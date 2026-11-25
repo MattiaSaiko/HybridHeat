@@ -1,0 +1,14 @@
+{
+  "domain": "hybrid_heat",
+  "name": "Hybrid Heat",
+  "codeowners": ["@MattiaSaiko"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/MattiaSaiko/HybridHeat",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/MattiaSaiko/HybridHeat/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "0.1.0"
+}

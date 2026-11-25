@@ -1,0 +1,53 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Claude Code and other AI assistant data (never publish)
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.claudeignore
+.superpowers/
+docs/superpowers/
+.mcp.json
+.cursor/
+.cursorrules
+.aider*
+.codex/
+AGENTS.md
+GEMINI.md
+
+# Secrets and local data (never publish)
+.env
+.env.*
+*.pem
+*.key
+secrets.yaml
+*.log
+
+# Browser automation output
+.playwright-mcp/
+
+# Local backups
+*.bundle
+
+# Not needed to run the component (kept locally, not published)
+tests/
+pytest.ini
+requirements_test.txt
+.github/ISSUE_TEMPLATE/
+.github/FUNDING.yml
+.github/social-preview.png

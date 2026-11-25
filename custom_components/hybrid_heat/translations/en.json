@@ -1,0 +1,338 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Hybrid Heat",
+        "description": "Choose the house-wide sources. Every one is optional and can be changed later; zones are added afterwards from the integration page.",
+        "data": {
+          "outdoor_temp": "Outdoor temperature",
+          "solar_temp": "Solar thermal tank temperature",
+          "pv_export": "Grid export power",
+          "pv_import": "Grid import power",
+          "pv_invert": "Invert grid power sign",
+          "battery_charge": "Battery charging power",
+          "battery_discharge": "Battery discharging power",
+          "battery_invert": "Invert battery power sign",
+          "battery_soc": "Battery level",
+          "boiler": "Boiler switch",
+          "presence": "People"
+        },
+        "data_description": {
+          "outdoor_temp": "Recommended. Without it, the outdoor limit for the air conditioners is not applied.",
+          "solar_temp": "Temperature of the solar thermal storage tank.",
+          "pv_export": "Two separate sensors (both positive) for export and import → fill in both this and “Grid import power”. A single signed net sensor at the grid meter (positive when exporting, negative when importing) → fill in only the first field (this one) and leave “Grid import power” empty. W, kW, … are converted.",
+          "pv_import": "Only with two separate sensors → fill in both this and “Grid export power”. With a single signed net sensor, fill in only the first and leave this empty.",
+          "pv_invert": "Only for a single signed sensor: enable it if yours is positive when importing from the grid. Ignored when “Grid import power” is set.",
+          "battery_charge": "Optional: battery charging counts as photovoltaic surplus, discharging always lowers it. Two separate sensors (both positive) for charging and discharging → fill in both this and “Battery discharging power”. A single signed sensor (positive when charging, negative when discharging) → fill in only the first field (this one) and leave “Battery discharging power” empty.",
+          "battery_discharge": "Only with two separate sensors → fill in both this and “Battery charging power”. With a single signed sensor, fill in only the first and leave this empty.",
+          "battery_invert": "Only for a single signed sensor: enable it if yours is positive when discharging. Ignored when “Battery discharging power” is set.",
+          "battery_soc": "Optional. Battery charge level in %: below the “Minimum battery level” setting, battery charging does not count as surplus (discharging still lowers it).",
+          "boiler": "Switch or relay that turns the gas boiler on and off.",
+          "presence": "When nobody is home, zones in Auto use the eco temperature."
+        }
+      },
+      "reconfigure": {
+        "title": "Hybrid Heat sources",
+        "description": "Change the house-wide sources. Clear a field to stop using that source.",
+        "data": {
+          "outdoor_temp": "Outdoor temperature",
+          "solar_temp": "Solar thermal tank temperature",
+          "pv_export": "Grid export power",
+          "pv_import": "Grid import power",
+          "pv_invert": "Invert grid power sign",
+          "battery_charge": "Battery charging power",
+          "battery_discharge": "Battery discharging power",
+          "battery_invert": "Invert battery power sign",
+          "battery_soc": "Battery level",
+          "boiler": "Boiler switch",
+          "presence": "People"
+        },
+        "data_description": {
+          "outdoor_temp": "Recommended. Without it, the outdoor limit for the air conditioners is not applied.",
+          "solar_temp": "Temperature of the solar thermal storage tank.",
+          "pv_export": "Two separate sensors (both positive) for export and import → fill in both this and “Grid import power”. A single signed net sensor at the grid meter (positive when exporting, negative when importing) → fill in only the first field (this one) and leave “Grid import power” empty. W, kW, … are converted.",
+          "pv_import": "Only with two separate sensors → fill in both this and “Grid export power”. With a single signed net sensor, fill in only the first and leave this empty.",
+          "pv_invert": "Only for a single signed sensor: enable it if yours is positive when importing from the grid. Ignored when “Grid import power” is set.",
+          "battery_charge": "Optional: battery charging counts as photovoltaic surplus, discharging always lowers it. Two separate sensors (both positive) for charging and discharging → fill in both this and “Battery discharging power”. A single signed sensor (positive when charging, negative when discharging) → fill in only the first field (this one) and leave “Battery discharging power” empty.",
+          "battery_discharge": "Only with two separate sensors → fill in both this and “Battery charging power”. With a single signed sensor, fill in only the first and leave this empty.",
+          "battery_invert": "Only for a single signed sensor: enable it if yours is positive when discharging. Ignored when “Battery discharging power” is set.",
+          "battery_soc": "Optional. Battery charge level in %: below the “Minimum battery level” setting, battery charging does not count as surplus (discharging still lowers it).",
+          "boiler": "Switch or relay that turns the gas boiler on and off.",
+          "presence": "When nobody is home, zones in Auto use the eco temperature."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Hybrid Heat is already configured. Add zones from the existing entry.",
+      "reconfigure_successful": "The sources have been updated.",
+      "unit_not_celsius": "Hybrid Heat works only when Home Assistant uses degrees Celsius (°C). Change the temperature unit in Settings → System → General."
+    }
+  },
+  "config_subentries": {
+    "zone": {
+      "entry_type": "Zone",
+      "initiate_flow": {
+        "user": "Add zone",
+        "reconfigure": "Edit zone"
+      },
+      "step": {
+        "user": {
+          "title": "Add zone",
+          "description": "A zone is a room or a group of rooms heated together. It needs at least one air conditioner or one thermostatic valve.",
+          "data": {
+            "name": "Name",
+            "climates": "Air conditioners",
+            "valves": "Thermostatic valves",
+            "climate_power": "Air conditioner power sensors",
+            "temperature_sensors": "Temperature sensors",
+            "windows": "Window sensors",
+            "schedule_source": "Schedule"
+          },
+          "data_description": {
+            "climates": "Climate entities of the air conditioners that heat this zone.",
+            "valves": "Climate entities of the radiator valves of this zone.",
+            "climate_power": "Optional. Without them, a nominal power is counted while an air conditioner is heating.",
+            "temperature_sensors": "Optional. Their average is the zone temperature; without them, the air conditioners' temperature is used.",
+            "windows": "Optional. An open window sets the zone to antifreeze.",
+            "schedule_source": "When the zone is in comfort; outside the schedule it uses the eco temperature."
+          }
+        },
+        "reconfigure": {
+          "title": "Edit zone",
+          "description": "Change the entities and the schedule of this zone. It needs at least one air conditioner or one thermostatic valve.",
+          "data": {
+            "name": "Name",
+            "climates": "Air conditioners",
+            "valves": "Thermostatic valves",
+            "climate_power": "Air conditioner power sensors",
+            "temperature_sensors": "Temperature sensors",
+            "windows": "Window sensors",
+            "schedule_source": "Schedule"
+          },
+          "data_description": {
+            "climates": "Climate entities of the air conditioners that heat this zone.",
+            "valves": "Climate entities of the radiator valves of this zone.",
+            "climate_power": "Optional. Without them, a nominal power is counted while an air conditioner is heating.",
+            "temperature_sensors": "Optional. Their average is the zone temperature; without them, the air conditioners' temperature is used.",
+            "windows": "Optional. An open window sets the zone to antifreeze.",
+            "schedule_source": "When the zone is in comfort; outside the schedule it uses the eco temperature."
+          }
+        },
+        "schedule_internal": {
+          "title": "Comfort periods",
+          "description": "Up to three comfort periods for weekdays (Monday to Friday) and three for the weekend. Fill in both start and end of a period, or leave both empty. A period that ends before it starts continues past midnight; a period whose start equals its end lasts 24 hours.",
+          "data": {
+            "weekday_1_start": "Weekdays, period 1 start",
+            "weekday_1_end": "Weekdays, period 1 end",
+            "weekday_2_start": "Weekdays, period 2 start",
+            "weekday_2_end": "Weekdays, period 2 end",
+            "weekday_3_start": "Weekdays, period 3 start",
+            "weekday_3_end": "Weekdays, period 3 end",
+            "weekend_1_start": "Weekend, period 1 start",
+            "weekend_1_end": "Weekend, period 1 end",
+            "weekend_2_start": "Weekend, period 2 start",
+            "weekend_2_end": "Weekend, period 2 end",
+            "weekend_3_start": "Weekend, period 3 start",
+            "weekend_3_end": "Weekend, period 3 end"
+          }
+        },
+        "schedule_external": {
+          "title": "External schedule",
+          "description": "Choose the entity that drives this zone: while it is on, the zone is in comfort; while it is off, in eco.",
+          "data": {
+            "schedule_entity": "Schedule or calendar"
+          },
+          "data_description": {
+            "schedule_entity": "With a calendar, preheating is not available because the start of the next event is not known in advance."
+          }
+        }
+      },
+      "error": {
+        "name_required": "Enter a name for the zone.",
+        "climate_or_valves_required": "Select at least one air conditioner or one thermostatic valve.",
+        "entity_in_other_zone": "Each entity can be used only once across all zones, either as air conditioner or as valve: {entities}.",
+        "own_entity": "Hybrid Heat's own thermostats cannot be used as climates or valves: {entities}",
+        "schedule_entity_required": "Select a schedule or a calendar.",
+        "band_incomplete": "Fill in both start and end of this period, or leave both empty."
+      },
+      "abort": {
+        "reconfigure_successful": "The zone has been updated."
+      }
+    }
+  },
+  "selector": {
+    "schedule_source": {
+      "options": {
+        "internal": "Internal (comfort periods)",
+        "external": "External (schedule or calendar)",
+        "none": "None"
+      }
+    }
+  },
+  "exceptions": {
+    "unit_not_celsius": {
+      "message": "Hybrid Heat works only when Home Assistant uses degrees Celsius (°C)."
+    }
+  },
+  "entity": {
+    "switch": {
+      "enabled": {
+        "name": "Enabled"
+      },
+      "solar_never_boiler": {
+        "name": "Never boiler with solar thermal"
+      },
+      "battery_surplus_enabled": {
+        "name": "Count battery charging as surplus"
+      }
+    },
+    "select": {
+      "mode": {
+        "name": "Mode",
+        "state": {
+          "auto": "Auto",
+          "comfort": "Comfort",
+          "eco": "Eco",
+          "antifreeze": "Antifreeze",
+          "off": "Off"
+        }
+      }
+    },
+    "climate": {
+      "zone": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "auto": "Auto",
+              "comfort": "Comfort",
+              "eco": "Eco",
+              "antifreeze": "Antifreeze"
+            }
+          }
+        }
+      }
+    },
+    "number": {
+      "comfort": {
+        "name": "Comfort temperature"
+      },
+      "eco": {
+        "name": "Eco temperature"
+      },
+      "antifreeze": {
+        "name": "Antifreeze temperature"
+      },
+      "solar_on_c": {
+        "name": "Solar thermal threshold"
+      },
+      "solar_high_c": {
+        "name": "Solar thermal high threshold"
+      },
+      "pv_threshold_w": {
+        "name": "PV surplus threshold"
+      },
+      "min_outdoor_c": {
+        "name": "Air conditioner minimum outdoor temperature"
+      },
+      "climate_hyst_c": {
+        "name": "Air conditioner hysteresis"
+      },
+      "climate_nominal_w": {
+        "name": "Air conditioner nominal power"
+      },
+      "valve_safety_offset_c": {
+        "name": "Valve safety net offset"
+      },
+      "preheat_default_min_per_c": {
+        "name": "Initial preheat minutes per degree"
+      },
+      "boiler_on_delay_s": {
+        "name": "Boiler on delay"
+      },
+      "boiler_off_delay_s": {
+        "name": "Boiler off delay"
+      },
+      "boiler_min_on_s": {
+        "name": "Boiler minimum on time"
+      },
+      "boiler_min_off_s": {
+        "name": "Boiler minimum off time"
+      },
+      "battery_soc_min_pct": {
+        "name": "Minimum battery level"
+      }
+    },
+    "sensor": {
+      "phase": {
+        "name": "Phase",
+        "state": {
+          "off": "Off",
+          "antifreeze": "Antifreeze",
+          "window_open": "Window open",
+          "eco": "Eco",
+          "preheating": "Preheating",
+          "maintenance": "Maintenance"
+        },
+        "state_attributes": {
+          "reason": {
+            "name": "Reason",
+            "state": {
+              "disabled": "Hybrid Heat disabled",
+              "mode_off": "Mode off",
+              "mode_antifreeze": "Antifreeze mode",
+              "window_open": "Window open",
+              "mode_comfort": "Comfort mode",
+              "mode_eco": "Eco mode",
+              "house_empty": "Nobody home",
+              "schedule": "Comfort period",
+              "preheat": "Preheating before the comfort period",
+              "default_eco": "Outside comfort periods"
+            }
+          },
+          "actuator": {
+            "name": "Actuator",
+            "state": {
+              "valves": "Valves",
+              "climate": "Air conditioners",
+              "none": "None"
+            }
+          },
+          "actuator_reason": {
+            "name": "Actuator reason",
+            "state": {
+              "zone_off": "Zone off or house disabled",
+              "phase_idle": "Antifreeze or window open",
+              "no_temperature": "Zone temperature not available",
+              "only_valves": "Zone with valves only",
+              "only_climate": "Zone with air conditioners only",
+              "outdoor_too_cold": "Too cold outside for the air conditioners",
+              "solar_thermal": "Solar thermal",
+              "pv_surplus": "Photovoltaic surplus",
+              "base_preheat_climate": "Preheating with the air conditioners",
+              "base_maintenance_valves": "Maintenance with the valves"
+            }
+          }
+        }
+      },
+      "target": {
+        "name": "Target temperature"
+      },
+      "active_source": {
+        "name": "Active source",
+        "state": {
+          "solar_thermal": "Solar thermal",
+          "photovoltaic": "Photovoltaic",
+          "none": "None"
+        }
+      }
+    },
+    "binary_sensor": {
+      "heat_request": {
+        "name": "Heat request"
+      },
+      "boiler_requested": {
+        "name": "Boiler requested"
+      }
+    }
+  }
+}

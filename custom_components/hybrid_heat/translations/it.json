@@ -1,0 +1,338 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Hybrid Heat",
+        "description": "Scegli le fonti comuni a tutta la casa. Sono tutte facoltative e modificabili in seguito; le zone si aggiungono dopo, dalla pagina dell'integrazione.",
+        "data": {
+          "outdoor_temp": "Temperatura esterna",
+          "solar_temp": "Temperatura accumulo solare termico",
+          "pv_export": "Potenza immessa in rete",
+          "pv_import": "Potenza prelevata dalla rete",
+          "pv_invert": "Inverti il segno della potenza di rete",
+          "battery_charge": "Potenza di carica batteria",
+          "battery_discharge": "Potenza di scarica batteria",
+          "battery_invert": "Inverti il segno della potenza della batteria",
+          "battery_soc": "Livello batteria",
+          "boiler": "Interruttore caldaia",
+          "presence": "Persone"
+        },
+        "data_description": {
+          "outdoor_temp": "Consigliata. Senza, non si applica il limite di temperatura esterna per i climatizzatori.",
+          "solar_temp": "Temperatura del serbatoio di accumulo del solare termico.",
+          "pv_export": "Due sensori separati (entrambi positivi) per immissione e prelievo → compila entrambi, questo e «Potenza prelevata dalla rete». Un solo sensore netto con segno al contatore (positivo quando immetti, negativo quando prelevi) → compila solo il primo campo, cioè questo, e lascia vuota la «Potenza prelevata dalla rete». W, kW, … vengono convertiti.",
+          "pv_import": "Solo con due sensori separati → compila entrambi, questo e «Potenza immessa in rete». Con un solo sensore netto con segno, compila solo il primo e lascia vuoto questo.",
+          "pv_invert": "Solo per un unico sensore con segno: attivalo se il tuo è positivo quando prelevi dalla rete. Viene ignorato se è impostata la «Potenza prelevata dalla rete».",
+          "battery_charge": "Facoltativa: la carica della batteria conta come surplus fotovoltaico, la scarica lo riduce sempre. Due sensori separati (entrambi positivi) per carica e scarica → compila entrambi, questo e «Potenza di scarica batteria». Un solo sensore con segno (positivo in carica, negativo in scarica) → compila solo il primo campo, cioè questo, e lascia vuota la «Potenza di scarica batteria».",
+          "battery_discharge": "Solo con due sensori separati → compila entrambi, questo e «Potenza di carica batteria». Con un solo sensore con segno, compila solo il primo e lascia vuoto questo.",
+          "battery_invert": "Solo per un unico sensore con segno: attivalo se il tuo è positivo quando la batteria si scarica. Viene ignorato se è impostata la «Potenza di scarica batteria».",
+          "battery_soc": "Facoltativo. Livello di carica della batteria in %: sotto l'impostazione «Livello minimo della batteria», la carica della batteria non conta come surplus (la scarica lo riduce comunque).",
+          "boiler": "Interruttore o relè che accende e spegne la caldaia a gas.",
+          "presence": "Quando non c'è nessuno in casa, le zone in Auto usano la temperatura eco."
+        }
+      },
+      "reconfigure": {
+        "title": "Fonti di Hybrid Heat",
+        "description": "Modifica le fonti comuni a tutta la casa. Svuota un campo per smettere di usare quella fonte.",
+        "data": {
+          "outdoor_temp": "Temperatura esterna",
+          "solar_temp": "Temperatura accumulo solare termico",
+          "pv_export": "Potenza immessa in rete",
+          "pv_import": "Potenza prelevata dalla rete",
+          "pv_invert": "Inverti il segno della potenza di rete",
+          "battery_charge": "Potenza di carica batteria",
+          "battery_discharge": "Potenza di scarica batteria",
+          "battery_invert": "Inverti il segno della potenza della batteria",
+          "battery_soc": "Livello batteria",
+          "boiler": "Interruttore caldaia",
+          "presence": "Persone"
+        },
+        "data_description": {
+          "outdoor_temp": "Consigliata. Senza, non si applica il limite di temperatura esterna per i climatizzatori.",
+          "solar_temp": "Temperatura del serbatoio di accumulo del solare termico.",
+          "pv_export": "Due sensori separati (entrambi positivi) per immissione e prelievo → compila entrambi, questo e «Potenza prelevata dalla rete». Un solo sensore netto con segno al contatore (positivo quando immetti, negativo quando prelevi) → compila solo il primo campo, cioè questo, e lascia vuota la «Potenza prelevata dalla rete». W, kW, … vengono convertiti.",
+          "pv_import": "Solo con due sensori separati → compila entrambi, questo e «Potenza immessa in rete». Con un solo sensore netto con segno, compila solo il primo e lascia vuoto questo.",
+          "pv_invert": "Solo per un unico sensore con segno: attivalo se il tuo è positivo quando prelevi dalla rete. Viene ignorato se è impostata la «Potenza prelevata dalla rete».",
+          "battery_charge": "Facoltativa: la carica della batteria conta come surplus fotovoltaico, la scarica lo riduce sempre. Due sensori separati (entrambi positivi) per carica e scarica → compila entrambi, questo e «Potenza di scarica batteria». Un solo sensore con segno (positivo in carica, negativo in scarica) → compila solo il primo campo, cioè questo, e lascia vuota la «Potenza di scarica batteria».",
+          "battery_discharge": "Solo con due sensori separati → compila entrambi, questo e «Potenza di carica batteria». Con un solo sensore con segno, compila solo il primo e lascia vuoto questo.",
+          "battery_invert": "Solo per un unico sensore con segno: attivalo se il tuo è positivo quando la batteria si scarica. Viene ignorato se è impostata la «Potenza di scarica batteria».",
+          "battery_soc": "Facoltativo. Livello di carica della batteria in %: sotto l'impostazione «Livello minimo della batteria», la carica della batteria non conta come surplus (la scarica lo riduce comunque).",
+          "boiler": "Interruttore o relè che accende e spegne la caldaia a gas.",
+          "presence": "Quando non c'è nessuno in casa, le zone in Auto usano la temperatura eco."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Hybrid Heat è già configurato. Aggiungi le zone dalla voce esistente.",
+      "reconfigure_successful": "Le fonti sono state aggiornate.",
+      "unit_not_celsius": "Hybrid Heat funziona solo con il sistema di unità in gradi Celsius (°C). Cambia l'unità di temperatura in Impostazioni → Sistema → Generale."
+    }
+  },
+  "config_subentries": {
+    "zone": {
+      "entry_type": "Zona",
+      "initiate_flow": {
+        "user": "Aggiungi zona",
+        "reconfigure": "Modifica zona"
+      },
+      "step": {
+        "user": {
+          "title": "Aggiungi zona",
+          "description": "Una zona è una stanza o un gruppo di stanze riscaldate insieme. Serve almeno un climatizzatore o una valvola termostatica.",
+          "data": {
+            "name": "Nome",
+            "climates": "Climatizzatori",
+            "valves": "Valvole termostatiche",
+            "climate_power": "Sensori di potenza dei climatizzatori",
+            "temperature_sensors": "Sensori di temperatura",
+            "windows": "Sensori finestra",
+            "schedule_source": "Programma orario"
+          },
+          "data_description": {
+            "climates": "Entità climate dei climatizzatori che scaldano questa zona.",
+            "valves": "Entità climate delle valvole dei termosifoni di questa zona.",
+            "climate_power": "Facoltativi. Senza, si conta una potenza nominale mentre un climatizzatore scalda.",
+            "temperature_sensors": "Facoltativi. La loro media è la temperatura della zona; senza, si usa la temperatura dei climatizzatori.",
+            "windows": "Facoltativi. Una finestra aperta porta la zona in antigelo.",
+            "schedule_source": "Quando la zona è in comfort; fuori dal programma usa la temperatura eco."
+          }
+        },
+        "reconfigure": {
+          "title": "Modifica zona",
+          "description": "Modifica le entità e il programma orario di questa zona. Serve almeno un climatizzatore o una valvola termostatica.",
+          "data": {
+            "name": "Nome",
+            "climates": "Climatizzatori",
+            "valves": "Valvole termostatiche",
+            "climate_power": "Sensori di potenza dei climatizzatori",
+            "temperature_sensors": "Sensori di temperatura",
+            "windows": "Sensori finestra",
+            "schedule_source": "Programma orario"
+          },
+          "data_description": {
+            "climates": "Entità climate dei climatizzatori che scaldano questa zona.",
+            "valves": "Entità climate delle valvole dei termosifoni di questa zona.",
+            "climate_power": "Facoltativi. Senza, si conta una potenza nominale mentre un climatizzatore scalda.",
+            "temperature_sensors": "Facoltativi. La loro media è la temperatura della zona; senza, si usa la temperatura dei climatizzatori.",
+            "windows": "Facoltativi. Una finestra aperta porta la zona in antigelo.",
+            "schedule_source": "Quando la zona è in comfort; fuori dal programma usa la temperatura eco."
+          }
+        },
+        "schedule_internal": {
+          "title": "Fasce comfort",
+          "description": "Fino a tre fasce comfort per i giorni feriali (da lunedì a venerdì) e tre per il fine settimana. Compila sia l'inizio sia la fine di una fascia, oppure lasciali vuoti entrambi. Una fascia che finisce prima di iniziare prosegue oltre la mezzanotte; una fascia con inizio uguale alla fine dura 24 ore.",
+          "data": {
+            "weekday_1_start": "Feriali, inizio fascia 1",
+            "weekday_1_end": "Feriali, fine fascia 1",
+            "weekday_2_start": "Feriali, inizio fascia 2",
+            "weekday_2_end": "Feriali, fine fascia 2",
+            "weekday_3_start": "Feriali, inizio fascia 3",
+            "weekday_3_end": "Feriali, fine fascia 3",
+            "weekend_1_start": "Fine settimana, inizio fascia 1",
+            "weekend_1_end": "Fine settimana, fine fascia 1",
+            "weekend_2_start": "Fine settimana, inizio fascia 2",
+            "weekend_2_end": "Fine settimana, fine fascia 2",
+            "weekend_3_start": "Fine settimana, inizio fascia 3",
+            "weekend_3_end": "Fine settimana, fine fascia 3"
+          }
+        },
+        "schedule_external": {
+          "title": "Programma esterno",
+          "description": "Scegli l'entità che guida questa zona: quando è accesa la zona è in comfort, quando è spenta in eco.",
+          "data": {
+            "schedule_entity": "Programma o calendario"
+          },
+          "data_description": {
+            "schedule_entity": "Con un calendario il preriscaldamento non è disponibile, perché l'inizio del prossimo evento non è noto in anticipo."
+          }
+        }
+      },
+      "error": {
+        "name_required": "Inserisci un nome per la zona.",
+        "climate_or_valves_required": "Seleziona almeno un climatizzatore o una valvola termostatica.",
+        "entity_in_other_zone": "Ogni entità può essere usata una sola volta in tutte le zone, come climatizzatore oppure come valvola: {entities}.",
+        "own_entity": "I termostati di Hybrid Heat non si possono usare come climatizzatori o valvole: {entities}",
+        "schedule_entity_required": "Seleziona un programma o un calendario.",
+        "band_incomplete": "Compila sia l'inizio sia la fine di questa fascia, oppure lasciali vuoti entrambi."
+      },
+      "abort": {
+        "reconfigure_successful": "La zona è stata aggiornata."
+      }
+    }
+  },
+  "selector": {
+    "schedule_source": {
+      "options": {
+        "internal": "Interno (fasce comfort)",
+        "external": "Esterno (programma o calendario)",
+        "none": "Nessuno"
+      }
+    }
+  },
+  "exceptions": {
+    "unit_not_celsius": {
+      "message": "Hybrid Heat funziona solo con il sistema di unità in gradi Celsius (°C)."
+    }
+  },
+  "entity": {
+    "switch": {
+      "enabled": {
+        "name": "Abilitato"
+      },
+      "solar_never_boiler": {
+        "name": "Mai caldaia con solare termico attivo"
+      },
+      "battery_surplus_enabled": {
+        "name": "Conta la carica della batteria come surplus"
+      }
+    },
+    "select": {
+      "mode": {
+        "name": "Modalità",
+        "state": {
+          "auto": "Auto",
+          "comfort": "Comfort",
+          "eco": "Eco",
+          "antifreeze": "Antigelo",
+          "off": "Spento"
+        }
+      }
+    },
+    "climate": {
+      "zone": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "auto": "Auto",
+              "comfort": "Comfort",
+              "eco": "Eco",
+              "antifreeze": "Antigelo"
+            }
+          }
+        }
+      }
+    },
+    "number": {
+      "comfort": {
+        "name": "Temperatura comfort"
+      },
+      "eco": {
+        "name": "Temperatura eco"
+      },
+      "antifreeze": {
+        "name": "Temperatura antigelo"
+      },
+      "solar_on_c": {
+        "name": "Soglia solare termico"
+      },
+      "solar_high_c": {
+        "name": "Soglia alta solare termico"
+      },
+      "pv_threshold_w": {
+        "name": "Soglia surplus fotovoltaico"
+      },
+      "min_outdoor_c": {
+        "name": "Temperatura esterna minima climatizzatori"
+      },
+      "climate_hyst_c": {
+        "name": "Isteresi climatizzatori"
+      },
+      "climate_nominal_w": {
+        "name": "Potenza nominale climatizzatori"
+      },
+      "valve_safety_offset_c": {
+        "name": "Scarto del paracadute delle valvole"
+      },
+      "preheat_default_min_per_c": {
+        "name": "Minuti per grado iniziali del preriscaldamento"
+      },
+      "boiler_on_delay_s": {
+        "name": "Ritardo accensione caldaia"
+      },
+      "boiler_off_delay_s": {
+        "name": "Ritardo spegnimento caldaia"
+      },
+      "boiler_min_on_s": {
+        "name": "Tempo minimo di accensione caldaia"
+      },
+      "boiler_min_off_s": {
+        "name": "Tempo minimo di spegnimento caldaia"
+      },
+      "battery_soc_min_pct": {
+        "name": "Livello minimo della batteria"
+      }
+    },
+    "sensor": {
+      "phase": {
+        "name": "Fase",
+        "state": {
+          "off": "Spenta",
+          "antifreeze": "Antigelo",
+          "window_open": "Finestra aperta",
+          "eco": "Eco",
+          "preheating": "Preriscaldamento",
+          "maintenance": "Mantenimento"
+        },
+        "state_attributes": {
+          "reason": {
+            "name": "Motivo",
+            "state": {
+              "disabled": "Hybrid Heat disabilitato",
+              "mode_off": "Modalità Spento",
+              "mode_antifreeze": "Modalità Antigelo",
+              "window_open": "Finestra aperta",
+              "mode_comfort": "Modalità comfort",
+              "mode_eco": "Modalità eco",
+              "house_empty": "Nessuno in casa",
+              "schedule": "Fascia comfort",
+              "preheat": "Preriscaldamento prima della fascia comfort",
+              "default_eco": "Fuori dalle fasce comfort"
+            }
+          },
+          "actuator": {
+            "name": "Attuatore",
+            "state": {
+              "valves": "Valvole",
+              "climate": "Climatizzatori",
+              "none": "Nessuno"
+            }
+          },
+          "actuator_reason": {
+            "name": "Motivo dell'attuatore",
+            "state": {
+              "zone_off": "Zona spenta o Hybrid Heat disabilitato",
+              "phase_idle": "Antigelo o finestra aperta",
+              "no_temperature": "Temperatura della zona non disponibile",
+              "only_valves": "Zona con sole valvole",
+              "only_climate": "Zona con soli climatizzatori",
+              "outdoor_too_cold": "Troppo freddo fuori per i climatizzatori",
+              "solar_thermal": "Solare termico",
+              "pv_surplus": "Surplus fotovoltaico",
+              "base_preheat_climate": "Preriscaldamento con i climatizzatori",
+              "base_maintenance_valves": "Mantenimento con le valvole"
+            }
+          }
+        }
+      },
+      "target": {
+        "name": "Temperatura obiettivo"
+      },
+      "active_source": {
+        "name": "Fonte attiva",
+        "state": {
+          "solar_thermal": "Solare termico",
+          "photovoltaic": "Fotovoltaico",
+          "none": "Nessuna"
+        }
+      }
+    },
+    "binary_sensor": {
+      "heat_request": {
+        "name": "Richiesta di calore"
+      },
+      "boiler_requested": {
+        "name": "Richiesta caldaia"
+      }
+    }
+  }
+}
