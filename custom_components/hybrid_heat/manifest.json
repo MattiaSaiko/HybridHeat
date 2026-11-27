@@ -1,6 +1,7 @@
 {
   "domain": "hybrid_heat",
   "name": "Hybrid Heat",
+  "categories": ["climate.thermostats_heating"],
   "codeowners": ["@MattiaSaiko"],
   "config_flow": true,
   "dependencies": [],
@@ -10,5 +11,5 @@
   "issue_tracker": "https://github.com/MattiaSaiko/HybridHeat/issues",
   "requirements": [],
   "single_config_entry": true,
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
